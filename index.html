@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <nav>
+      <div class="main-nav container flex justify-between items-center">
+        <a href="#" onclick="reload()" class="company-logo">
+          <img src="./assets/WhatsApp Image 2025-05-02 at 00.05.54_b5b617e1.jpg" alt="company logo" />
+        </a>
+    
+        <div class="nav-links">
+          <ul class="flex space-x-4">
+            <li class="hover-link nav-item" data-query="ipl" onclick="onNavItemClick(this)">SPORTS</li>
+            <li class="hover-link nav-item" data-query="finance" onclick="onNavItemClick(this)">FINANCE</li>
+            <li class="hover-link nav-item" data-query="politics" onclick="onNavItemClick(this)">POLITICS</li>
+          </ul>
+        </div>
+    
+        <div class="search-bar flex items-center space-x-2">
+          <input id="search-text" type="text" class="news-input" placeholder="Search" style="color: dimgrey;" />
+          <button id="search-button" class="search-button">Search</button>
+        </div>
+    
+        <button id="theme-toggle" class="ml-4 px-3 py-2 border rounded-full hover:bg-gray-200 transition">🌙 Dark Mode</button>
+    
+        <div id="navbar-user" class="ml-4">
+          <!-- Login or user info will be injected by script -->
+        </div>
+      </div>
+    </nav>
+    
+    
+
+    <main>
+      <div class="cards-container container flex" id="cards-container"></div>
+    </main>
+
+    <template id="template-news-card">
+      <div class="card">
+        <div class="card-header">
+          <img
+            src="https://via.placeholder.com/400x200"
+            alt="news-image"
+            id="news-img"
+          />
+        </div>
+        <div class="card-content">
+          <h3 id="news-title">This is the Title</h3>
+          <h6 class="news-source" id="news-source">End Gadget 26/08/2023</h6>
+          <p class="news-desc" id="news-desc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+            saepe quis voluptatum quisquam vitae doloremque facilis molestias
+            quae ratione cumque!
+          </p>
+        </div>
+      </div>
+    </template>
+    <footer class="bg-gray-900 text-white py-6 mt-8">
+      <div class="container mx-auto text-center">
+        <p class="mb-2">Contact us: <a href="mailto:newsapp@example.com" class="text-blue-400 hover:underline">ONLYONEAPP@GMAIL.COM</a></p>
+        <p><a href="about.html" class="text-blue-400 hover:underline">About Us</a></p>
+      </div>
+    </footer>  
+    <script>
+      // Check if the user is logged in (username exists in localStorage)
+      window.addEventListener("DOMContentLoaded", () => {
+        const user = localStorage.getItem("username");
+        const userDiv = document.getElementById("navbar-user");
+        const loginButton = document.getElementById("login-btn");
+  
+        if (user) {
+          // If user is logged in, display the username and logout button
+          userDiv.innerHTML = `
+            <span class="text-blue mr-3">Hello, ${user}</span>
+            <button onclick="logout()" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
+              Logout
+            </button>
+          `;
+        } else {
+          userDiv.innerHTML = `
+  <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">Login</a>
+  <a href="register.html" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Register</a>
+`;
+
+        }
+      });
+  
+      // Logout function: Remove username from localStorage and reload the page
+      function logout() {
+        localStorage.removeItem("username");
+        window.location.reload(); // Reload the page to reflect the logout
+      }
+    </script>
+    
+    <script src="script.js"></script>
+
+    
+  </body>
+</html>
+ 
